@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         buttonGetInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DataRetriever dataRetriever = new DataRetriever(MainActivity.this);
+                dataRetriever.fetchData();
                 startActivity(new Intent(MainActivity.this, InfoActivity.class));
             }
         });
@@ -38,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     public void switchToInfo(View view) {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
+    }
+
+    public String getMunicipalityName() {
+        return textMunicipality.getText().toString();
     }
 
 
