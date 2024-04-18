@@ -2,17 +2,23 @@ package com.example.ht;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DataRetriever {
 
+
+public class DataRetriever {
+/*
     public void getPopulationData(String municipality) {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -49,10 +55,6 @@ public class DataRetriever {
 
         code = null;
         code = municipalityCodes.get(municipality);
-
-        if (code == null) {
-            break;
-        }
 
         try {
             URL url = new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/synt/statfin_synt_pxt_12dy.px");
@@ -116,4 +118,6 @@ public class DataRetriever {
 
 
     }
+
+ */
 }

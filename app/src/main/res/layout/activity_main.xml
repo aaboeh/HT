@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/textMuniciplaity"
+        android:id="@+id/textMunicipality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -26,6 +26,6 @@
         android:text="Näytä tiedot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMuniciplaity" />
+        app:layout_constraintTop_toBottomOf="@+id/textMunicipality" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
