@@ -1,7 +1,9 @@
 package com.example.ht;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,11 +44,13 @@ public class MainActivity extends AppCompatActivity {
         buttonGetInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataRetriever dataRetriever = new DataRetriever(MainActivity.this);
-                dataRetriever.fetchData();
+                onFindBtnClick(v);
+                /*
                 String municipalityName = getMunicipalityName();
                 addRecentInput(municipalityName);
                 startActivity(new Intent(MainActivity.this, InfoActivity.class));
+                 */
+
             }
         });
 
@@ -59,6 +65,31 @@ public class MainActivity extends AppCompatActivity {
     public void switchToInfo(View view) {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
+    }
+
+    public void onFindBtnClick(View view) {
+        Log.d("tag", "nappula klikattu");
+        Context context = this;
+
+        DataRetriever dr = new DataRetriever();
+
+        ExecutorService service = Executors.newSingleThreadExecutor();
+
+        service.execute(new Runnable() {
+
+            @Override
+            public void run() {
+                ArrayList<MunicipalityData> populationData = dr.getData(context, "Mikkeli");
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // tässä voi päivittää mainactivityn näkymää apilla haetun datan avulla
+                    }
+                });
+                Log.d("tag", "data haettu");
+            }
+        });
     }
 
     public String getMunicipalityName() {

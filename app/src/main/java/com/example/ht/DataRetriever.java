@@ -1,5 +1,6 @@
 package com.example.ht;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.EditText;
 import java.io.BufferedReader;
@@ -21,20 +22,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  * Hello world!
  *
  */
-public class DataRetriever
-{
-    private static MainActivity mainActivity;
 
-    public DataRetriever(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
-    }
+public class DataRetriever {
 
-    public static String fetchData() {
-        return mainActivity.getMunicipalityName();
-    }
-
-    public static void main( String[] args )
-    {
+    public ArrayList<MunicipalityData> getData(Context context, String municipality) {
 
         // https://statfin.stat.fi/PxWeb/api/v1/en/StatFin/synt/statfin_synt_pxt_12dy.px
 
@@ -70,20 +61,14 @@ public class DataRetriever
             municipalityCodes.put(keys.get(i), values.get(i));
         }
 
-        //System.out.println(municipalityCodes.toString());
 
-        String municipality = fetchData() ;
-        Log.d("myTag", municipality);
+        //Log.d("myTag", municipality);
+
         String code = null;
 
-        while(true) {
-            code = null;
-            municipality =
-            code = municipalityCodes.get(municipality);
+        code = null;
+        code = municipalityCodes.get(municipality);
 
-            if (code == null) {
-                break;
-            }
 
             try {
                 URL url = new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/synt/statfin_synt_pxt_12dy.px");
@@ -94,7 +79,7 @@ public class DataRetriever
                 con.setRequestProperty("Accept", "application/json");
                 con.setDoOutput(true);
 
-                JsonNode jsonInputString = objectMapper.readTree(new File("query.json"));
+                JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(R.raw.query));
 
                 ((ObjectNode) jsonInputString.get("query").get(0).get("selection")).putArray("values").add(code);
 
@@ -130,17 +115,7 @@ public class DataRetriever
                     populationData.add(new MunicipalityData(Integer.valueOf(years.get(i)), Integer.valueOf(populations.get(i))));
                 }
 
-                System.out.println("=======================");
-                System.out.println(municipality);
-                System.out.println("-----------------------");
-
-                for (MunicipalityData data : populationData) {
-                    System.out.print(data.getYear() + ": " + data.getPopulation() + "  ");
-                    for(int i = 0; i < data.getPopulation() / 10000; i++) {
-                        System.out.print("*");
-                    }
-                    System.out.println();
-                }
+                return populationData;
 
 
 
@@ -152,13 +127,8 @@ public class DataRetriever
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
-
-
-        }
-
-
-
-
+            return null;
     }
 }
+
+
