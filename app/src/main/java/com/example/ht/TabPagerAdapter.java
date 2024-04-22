@@ -19,11 +19,11 @@ public class TabPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         if (position == 0) {
-            Bundle data = new Bundle();
-            data.putString("dataID", mainActivity.getMunicipalityName());
+            //Bundle data = new Bundle();
+            //data.putString("dataID", mainActivity.getMunicipalityName());
 
             InfoFragment iFragment = new InfoFragment();
-            iFragment.setArguments(data);
+            //iFragment.setArguments(data);
 
             return iFragment;
 

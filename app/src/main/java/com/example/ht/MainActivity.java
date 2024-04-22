@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     private Button buttonGetInfo;
     private EditText editTextMunicipality;
-    private ArrayList<String> recentInputs;
+    private static ArrayList<String> recentInputs;
     private RecyclerView recyclerView;
     private RecentInputAdapter adapter;
     private TextView textMunicipalityPopulation;
@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                             return;
                         }
                         runOnUiThread(new Runnable() {
-                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 String s = "";
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                                 );
                             }
                         });
-                        //Log.d("LUT", "Data haettu");
                     }
                 });
 
@@ -117,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         }
     }
 
-
-
+    public static String getRecentInput(int position) {
+        return recentInputs.get(position);
+    }
 }

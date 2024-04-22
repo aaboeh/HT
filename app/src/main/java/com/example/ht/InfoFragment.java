@@ -33,10 +33,11 @@ public class InfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
         textMunicipalityName = view.findViewById(R.id.textMunicipalityName);
+        String dataText = MainActivity.getRecentInput(0);
+        textMunicipalityName.setText(dataText);
 
         if (getArguments() != null) {
-            String dataText = getArguments().getString("dataID");
-            textMunicipalityName.setText(dataText);
+            //String dataText = getArguments().getString("dataID");
         }
 
 
