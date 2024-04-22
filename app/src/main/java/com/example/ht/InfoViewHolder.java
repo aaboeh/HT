@@ -7,10 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class InfoViewHolder extends RecyclerView.ViewHolder {
-    TextView municipalityName;
+    TextView municipalityPopulation;
 
     public InfoViewHolder(@NonNull View itemView) {
         super(itemView);
-        municipalityName = itemView.findViewById(R.id.textMunicipalityName);
+        municipalityPopulation = itemView.findViewById(R.id.textPopulation);
     }
 }

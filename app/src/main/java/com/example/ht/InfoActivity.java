@@ -18,6 +18,7 @@ public class InfoActivity extends AppCompatActivity {
         TabLayout tablayout = findViewById(R.id.tabLayout);
 
         MainActivity mainActivity = (MainActivity) getIntent().getSerializableExtra("MainActivityInstance");
+        //String weather = getIntent().getStringExtra("dataID");
         TabPagerAdapter adapter = new TabPagerAdapter(this, mainActivity);
         viewPager.setAdapter(adapter);
 

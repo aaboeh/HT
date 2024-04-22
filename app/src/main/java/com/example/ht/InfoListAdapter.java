@@ -7,12 +7,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class InfoListAdapter extends RecyclerView.Adapter<InfoViewHolder> {
 
     private Context context;
+    ArrayList<String> municipalityInfo;
 
-    public InfoListAdapter(Context context) {
+    public InfoListAdapter(Context context, ArrayList<String> municipalityInfo) {
         this.context = context;
+        this.municipalityInfo = municipalityInfo;
     }
 
     @NonNull
@@ -23,11 +27,12 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull InfoViewHolder holder, int position) {
-
+        String municipalityPopulation = municipalityInfo.get(position);
+        holder.municipalityPopulation.setText(municipalityPopulation);
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return municipalityInfo.size();
     }
 }

@@ -9,14 +9,14 @@
     <TextView
         android:id="@+id/textMunicipalityName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="Kunta:"
-        android:textSize="20sp" />
+        android:textSize="30sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMunicipalityInfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="30dp" />
+        android:layout_height="693dp"
+        android:layout_marginTop="50dp" />
 
 </FrameLayout>

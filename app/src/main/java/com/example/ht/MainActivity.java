@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     private RecyclerView recyclerView;
     private RecentInputAdapter adapter;
     private TextView textMunicipalityPopulation;
+    private String weather;
 
 //kommentoitu jotain kohtia pois
 
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 DataRetriever dataRetriever = new DataRetriever(MainActivity.this);
                 WeatherDataRetriever wr = new WeatherDataRetriever();
                 String municipality = editTextMunicipality.getText().toString();
-                //dataRetriever.fetchData();
 
                 ExecutorService service = Executors.newSingleThreadExecutor();
                 service.execute(new Runnable() {
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                                 textMunicipalityPopulation.setText(
                                         weatherData.getName() + "\n" + "Sää nyt: " + weatherData.getMain() + "(" + weatherData.getDescription() + ")" + "\n" + "Lämpötila: " + weatherData.getTemperature() + " K\n" + "Tuulennopeus: " + weatherData.getWindSpeed() + "m/s\n"
                                 );
+                                weather = weatherData.getName() + "\n" + "Sää nyt: " + weatherData.getMain() + "(" + weatherData.getDescription() + ")" + "\n" + "Lämpötila: " + weatherData.getTemperature() + " K\n" + "Tuulennopeus: " + weatherData.getWindSpeed() + "m/s\n";
                             }
                         });
                     }
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
                 String municipalityName = getMunicipalityName();
                 addRecentInput(municipalityName);
-                Log.d("Lut", "Nappula toimii");
+                getIntent().putExtra("dataID", weather);
                 startActivity(new Intent(MainActivity.this, InfoActivity.class));
             }
         });

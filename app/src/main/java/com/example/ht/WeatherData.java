@@ -1,7 +1,7 @@
 package com.example.ht;
 
 public class WeatherData {
-    private String name;
+    private static String name;
     private String main;
     private String description;
     private String temperature;
@@ -15,7 +15,7 @@ public class WeatherData {
         windSpeed = w;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 

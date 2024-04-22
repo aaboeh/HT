@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class InfoFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TextView textMunicipalityName;
+    private ArrayList<String> municipalityInfo;
 
 
     private Context context;
@@ -35,15 +38,18 @@ public class InfoFragment extends Fragment {
         textMunicipalityName = view.findViewById(R.id.textMunicipalityName);
         String dataText = MainActivity.getRecentInput(0);
         textMunicipalityName.setText(dataText);
+        String weather = WeatherData.getName();
+        municipalityInfo.add(weather);
+        recyclerView = view.findViewById(R.id.rvMunicipalityInfo);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        InfoListAdapter adapter = new InfoListAdapter(context, municipalityInfo);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        //String weather = getArguments().getString("dataID");
 
         if (getArguments() != null) {
-            //String dataText = getArguments().getString("dataID");
+            //String weather = getArguments().getString("dataID");
         }
-
-
-        /*recyclerView = view.findViewById(R.id.rvMunicipalityInfo);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new InfoListAdapter(context));*/
 
         return view;
     }
