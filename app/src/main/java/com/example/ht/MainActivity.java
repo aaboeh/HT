@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private RecentInputAdapter adapter;
     private TextView textMunicipalityPopulation;
 
+//kommentoitu jotain kohtia pois
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
