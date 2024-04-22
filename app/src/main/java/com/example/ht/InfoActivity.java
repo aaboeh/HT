@@ -17,13 +17,15 @@ public class InfoActivity extends AppCompatActivity {
         ViewPager2 viewPager = findViewById(R.id.viewArea);
         TabLayout tablayout = findViewById(R.id.tabLayout);
 
-        TabPagerAdapter adapter = new TabPagerAdapter(this);
+        MainActivity mainActivity = (MainActivity) getIntent().getSerializableExtra("MainActivityInstance");
+        TabPagerAdapter adapter = new TabPagerAdapter(this, mainActivity);
         viewPager.setAdapter(adapter);
 
         tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+
             }
 
             @Override

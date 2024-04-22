@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class InfoFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private TextView textMunicipalityName;
+
 
     private Context context;
 
@@ -29,6 +32,13 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
+        textMunicipalityName = view.findViewById(R.id.textMunicipalityName);
+
+        if (getArguments() != null) {
+            String dataText = getArguments().getString("dataID");
+            textMunicipalityName.setText(dataText);
+        }
+
 
         /*recyclerView = view.findViewById(R.id.rvMunicipalityInfo);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
