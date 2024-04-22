@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                                 textMunicipalityPopulation.setText(s);
                             }
                         });
-                        Log.d("LUT", "Data haettu");
+                        //Log.d("LUT", "Data haettu");
                     }
                 });
 
