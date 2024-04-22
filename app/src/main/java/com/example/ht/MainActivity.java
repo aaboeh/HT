@@ -1,5 +1,6 @@
 package com.example.ht;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -66,14 +67,19 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                             return;
                         }
                         runOnUiThread(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 String s = "";
-                                for (MunicipalityData data : populationData) {
+                                /*for (MunicipalityData data : populationData) {
                                     s = s + data.getYear() + ": " + data.getPopulation() + "\n";
-                                }
+                                }*/
                                 //s = s + populationData.get(populationData.size()-1).getYear() + ": " + populationData.get(populationData.size()-1).getPopulation() + "\n";
-                                textMunicipalityPopulation.setText(s);
+                                //textMunicipalityPopulation.setText(s);
+
+                                textMunicipalityPopulation.setText(
+                                        weatherData.getName() + "\n" + "Sää nyt: " + weatherData.getMain() + "(" + weatherData.getDescription() + ")" + "\n" + "Lämpötila: " + weatherData.getTemperature() + " K\n" + "Tuulennopeus: " + weatherData.getWindSpeed() + "m/s\n"
+                                );
                             }
                         });
                         //Log.d("LUT", "Data haettu");
