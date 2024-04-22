@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 DataRetriever dataRetriever = new DataRetriever(MainActivity.this);
-                //WeatherDataRetriever wr = new WeatherDataRetriever();
+                WeatherDataRetriever wr = new WeatherDataRetriever();
                 String municipality = editTextMunicipality.getText().toString();
                 //dataRetriever.fetchData();
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         ArrayList<MunicipalityData> populationData = dataRetriever.getMunicipalityData(context, municipality);
-                        //WeatherData weatherData = wr.getWeatherData(municipality);
+                        WeatherData weatherData = wr.getWeatherData(municipality);
 
                         if (populationData == null) {
                             return;
