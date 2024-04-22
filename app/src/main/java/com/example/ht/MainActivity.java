@@ -1,7 +1,9 @@
 package com.example.ht;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,14 +15,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonGetInfo;
-    private EditText textMunicipality;
+    private EditText editTextMunicipality;
     private ArrayList<String> recentInputs;
     private RecyclerView recyclerView;
     private RecentInputAdapter adapter;
+    private TextView textMunicipalityPopulation;
 
 
     @Override
@@ -28,22 +33,52 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textMunicipality = findViewById(R.id.textMunicipality);
+        editTextMunicipality = findViewById(R.id.textMunicipality);
         buttonGetInfo = findViewById(R.id.buttonGetInfo);
         recentInputs = new ArrayList<>();
         adapter = new RecentInputAdapter(getApplicationContext(), recentInputs);
         recyclerView = findViewById(R.id.rvRecentInputs);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        Context context = this;
+        textMunicipalityPopulation = findViewById(R.id.textMunicipalityPopulation);
 
         // onClickListener InfoActivity siirtymiseen
         buttonGetInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 DataRetriever dataRetriever = new DataRetriever(MainActivity.this);
-                dataRetriever.fetchData();
+                String municipality = editTextMunicipality.getText().toString();
+                //dataRetriever.fetchData();
+
+                ExecutorService service = Executors.newSingleThreadExecutor();
+                service.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArrayList<MunicipalityData> populationData = dataRetriever.getMunicipalityData(context, municipality);
+
+                        if (populationData == null) {
+                            return;
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                String s = "";
+                                for (MunicipalityData data : populationData) {
+                                    s = s + data.getYear() + ": " + data.getPopulation() + "\n";
+                                }
+                                //s = s + populationData.get(populationData.size()-1).getYear() + ": " + populationData.get(populationData.size()-1).getPopulation() + "\n";
+                                textMunicipalityPopulation.setText(s);
+                            }
+                        });
+                        Log.d("LUT", "Data haettu");
+                    }
+                });
+
                 String municipalityName = getMunicipalityName();
                 addRecentInput(municipalityName);
+                Log.d("Lut", "Nappula toimii");
                 startActivity(new Intent(MainActivity.this, InfoActivity.class));
             }
         });
@@ -62,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String getMunicipalityName() {
-        return textMunicipality.getText().toString();
+        return editTextMunicipality.getText().toString();
     }
 
     public void addRecentInput(String input) {
