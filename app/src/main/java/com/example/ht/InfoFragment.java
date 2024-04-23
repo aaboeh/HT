@@ -36,15 +36,19 @@ public class InfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
         textMunicipalityName = view.findViewById(R.id.textMunicipalityName);
+        municipalityInfo = new ArrayList<>();
         String dataText = MainActivity.getRecentInput(0);
         textMunicipalityName.setText(dataText);
-        /*String weather = WeatherData.getName();
-        municipalityInfo.add(weather);
+        municipalityInfo.add(WeatherData.getName());
+        municipalityInfo.add(WeatherData.getMain());
+        municipalityInfo.add(WeatherData.getDescription());
+        municipalityInfo.add(WeatherData.getTemperature());
+        municipalityInfo.add(WeatherData.getWindSpeed());
         recyclerView = view.findViewById(R.id.rvMunicipalityInfo);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         InfoListAdapter adapter = new InfoListAdapter(context, municipalityInfo);
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();*/
+        //adapter.notifyDataSetChanged();
         //String weather = getArguments().getString("dataID");
 
         if (getArguments() != null) {

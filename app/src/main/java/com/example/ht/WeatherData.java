@@ -2,10 +2,10 @@ package com.example.ht;
 
 public class WeatherData {
     private static String name;
-    private String main;
-    private String description;
-    private String temperature;
-    private String windSpeed;
+    private static String main;
+    private static String description;
+    private static String temperature;
+    private static String windSpeed;
 
     public WeatherData(String n, String m, String d, String t, String w) {
         name = n;
@@ -23,7 +23,7 @@ public class WeatherData {
         this.name = name;
     }
 
-    public String getMain() {
+    public static String getMain() {
         return main;
     }
 
@@ -31,7 +31,7 @@ public class WeatherData {
         this.main = main;
     }
 
-    public String getDescription() {
+    public static String getDescription() {
         return description;
     }
 
@@ -39,7 +39,7 @@ public class WeatherData {
         this.description = description;
     }
 
-    public String getTemperature() {
+    public static String getTemperature() {
         return temperature;
     }
 
@@ -47,7 +47,7 @@ public class WeatherData {
         this.temperature = temperature;
     }
 
-    public String getWindSpeed() {
+    public static String getWindSpeed() {
         return windSpeed;
     }
 

@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class InfoViewHolder extends RecyclerView.ViewHolder {
-    TextView municipalityPopulation;
+    static TextView municipalityPopulation;
 
     public InfoViewHolder(@NonNull View itemView) {
         super(itemView);
