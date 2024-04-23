@@ -27,8 +27,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull InfoViewHolder holder, int position) {
-        String municipalityPopulation = municipalityInfo.get(position);
-        holder.municipalityPopulation.setText(municipalityPopulation);
+        //String municipalityPopulation = municipalityInfo.get(position);
+        //holder.municipalityPopulation.setText(municipalityPopulation);
     }
 
     @Override

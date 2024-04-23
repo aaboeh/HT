@@ -38,13 +38,13 @@ public class InfoFragment extends Fragment {
         textMunicipalityName = view.findViewById(R.id.textMunicipalityName);
         String dataText = MainActivity.getRecentInput(0);
         textMunicipalityName.setText(dataText);
-        String weather = WeatherData.getName();
+        /*String weather = WeatherData.getName();
         municipalityInfo.add(weather);
         recyclerView = view.findViewById(R.id.rvMunicipalityInfo);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         InfoListAdapter adapter = new InfoListAdapter(context, municipalityInfo);
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
         //String weather = getArguments().getString("dataID");
 
         if (getArguments() != null) {
