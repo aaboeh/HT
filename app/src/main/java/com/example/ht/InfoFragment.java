@@ -21,8 +21,6 @@ public class InfoFragment extends Fragment {
     private ArrayList<String> municipalityInfo;
 
 
-    private Context context;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +42,11 @@ public class InfoFragment extends Fragment {
         municipalityInfo.add(WeatherData.getDescription());
         municipalityInfo.add(WeatherData.getTemperature());
         municipalityInfo.add(WeatherData.getWindSpeed());
+        municipalityInfo.add("Asukasluku vuonna "+ MunicipalityData.getYear()  + ": " + MunicipalityData.getPopulation());
+
+
+        Context context = getContext();
+
         recyclerView = view.findViewById(R.id.rvMunicipalityInfo);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         InfoListAdapter adapter = new InfoListAdapter(context, municipalityInfo);

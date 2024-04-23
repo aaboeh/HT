@@ -1,8 +1,8 @@
 package com.example.ht;
 
 public class MunicipalityData {
-    private int year;
-    private int population;
+    private static int year;
+    private static int population;
 
     public MunicipalityData(int y, int p) {
         year = y;
@@ -10,15 +10,16 @@ public class MunicipalityData {
     }
 
 
-    public int getYear() {
+    public static int getYear() {
         return year;
     }
     public void setYear(int year) {
         this.year = year;
     }
-    public int getPopulation() {
+    public static int getPopulation() {
         return population;
     }
+
     public void setPopulation(int population) {
         this.population = population;
     }

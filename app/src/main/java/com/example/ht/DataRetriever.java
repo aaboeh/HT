@@ -62,12 +62,9 @@ public class DataRetriever
             municipalityCodes.put(keys.get(i), values.get(i));
         }
 
-        /*String municipality = fetchData() ;
-        Log.d("myTag", municipality);*/
         String code = null;
 
         code = null;
-        //municipality =
         code = municipalityCodes.get(municipality);
 
         try {
